@@ -1,3 +1,4 @@
+import CartWidjet from "./CartWidjet";
 
 const NavBar  = () => {
     return (<nav class="navbar bg-dark  justify-content-between navbar-expand-lg navbar-light bg-light">
@@ -15,6 +16,7 @@ const NavBar  = () => {
         </div>
       </div>
     </div>
+    <CartWidjet />
   </nav> );
 }
  
