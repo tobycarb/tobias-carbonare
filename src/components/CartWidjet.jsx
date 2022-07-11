@@ -1,5 +1,5 @@
 const CartWidjet = () => {
-const numero = 4 ;
+const numero = 0 ;
     return ( 
         <>
         <button class="botonNav">
