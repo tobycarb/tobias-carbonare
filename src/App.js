@@ -9,9 +9,10 @@ function App() {
   return (
   <>
   <NavBar />;
+  {/* <ItemCount stock={10} initial={1}/> */}
   <ItemListContainer greeting={"bienvenidos a tobinstrumentos"} />
   <hr/>
-  <ItemCount stock={10} initial={1}/>
+ 
 
   </>
   )
