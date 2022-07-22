@@ -9,6 +9,7 @@ const ItemDetail = ({item}) => {
                         <img class="card-img cartera" style={{height:400}} src={item.img} alt="" />
                         <p class="cartera">{item.category}</p>
                         <p class="h2 cartera">${item.price}</p>
+                        <p class ="h2"> ${item.categoria}</p>
                       
       
                         <ItemCount class="cartera" stock={10} initial={1}/>
