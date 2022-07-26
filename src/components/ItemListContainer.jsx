@@ -43,10 +43,10 @@ const ItemListContainer = (props) => {
       "img": "https://dynamix-audio.com/wp-content/uploads/2019/11/Grand-Piano.jpg",
        "categoria":"piano"
     }, ];
-      console.log("%c render itemlistcontainer","color:green");
+      
       ;
       const {name}=useParams()
-      console.log(name);
+     
       let [items,setItems] = useState([]);
       useEffect(()=>{    let promiseItems = new Promise ((resolve,reject)=>{
         setTimeout(
@@ -73,7 +73,7 @@ const ItemListContainer = (props) => {
     return ( 
         <>
         <ItemList items={items}/>
-        {console.log(items)}
+       
         <p>{props.greeting}</p>
         </>
      );

@@ -22,6 +22,7 @@ function App() {
   <Route index  element={<ItemListContainer />} />
   <Route path="/category/:name" element ={<ItemListContainer /> }/>
     <Route path='/item/:id' element= {<ItemDetailContainer/>} />
+  
     </Routes>
  
   {/* <ItemCount stock={10} initial={1}/> */}

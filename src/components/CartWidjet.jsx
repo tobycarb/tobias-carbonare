@@ -1,3 +1,4 @@
+import ItemDetail from "./ItemDetail";
 const CartWidjet = () => {
 const numero = 0 ;
     return ( 

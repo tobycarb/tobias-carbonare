@@ -2,7 +2,7 @@ import React from "react";
 import ItemCount from "./ItemCount";
 import {Link} from "react-router-dom"
 const ItemList = (props) => {
-    console.log("render ItemList",props.items);
+    
     return ( 
         <>
         <div>
@@ -19,7 +19,7 @@ const ItemList = (props) => {
                         <p class="h2 cartera">${cadaItem.price}</p>
                         <Link class="text-center h3 cartera" to={`item/${cadaItem.id}`} ><button class="cartera" style={{width:300}}>ver detalles</button></Link>
 
-                        <ItemCount class="cartera" stock={10} initial={1}/>
+                      
                     </div>
                 })
         }
