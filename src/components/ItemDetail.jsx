@@ -1,14 +1,17 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import ItemCount from "./ItemCount";
 import { useNavigate, Link} from "react-router-dom";
+import { CartContext } from "./contexts/CartContext";
 const ItemDetail = ({item}) => {
+    const {setCartItems} = useContext(CartContext)
     const [amount,setAmount]=useState(0)
     
-    const onAdd = (amount => {
+    const onAdd = (amount) => {
         setAmount(amount)
+        setCartItems((prevState)=>  [...prevState,item])
         
-    })
+    }
     return ( 
         <>
         <div class="card cartera "style={{width:780}} key={item.id}>
@@ -22,7 +25,7 @@ const ItemDetail = ({item}) => {
                       
                     {amount==0 ?  <ItemCount class="cartera" stock={10} initial={1} onAdd={onAdd}/> : <h1 >felicidades, compraste {amount} unidades</h1>}
                       
-                       <Link to={"/CartWidjet"}> <button> checkout!!</button></Link> 
+                       <Link to={"/Cart"}> <button> checkout!!</button></Link> 
                     </div>
                 
                    
