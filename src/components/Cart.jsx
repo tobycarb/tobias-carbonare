@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { CartContext } from "./contexts/CartContext";
 
 const Cart = () => {
+  
   const [totalPrice, setTotalPrice] = useState(0);
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, removeItem, clear,setCartItems } = useContext(CartContext);
   useEffect(() => {
     let total = 0;
     cartItems.forEach((item) => {
@@ -12,9 +14,15 @@ const Cart = () => {
     setTotalPrice(total);
   }, [cartItems]);
   return (
+    
     <>
-    
-    
+   {
+   [cartItems]==0 ?(
+    <>
+    no hay items, agrega nuevos productos! 
+    </>
+   ) : (
+    <>
     <table class="table">
     <thead>
         <tr>
@@ -24,11 +32,14 @@ const Cart = () => {
         </tr>
     </thead>
         {cartItems.map((item) => (
+         
           <>
+           
             <tbody>
                 <tr>
                 <td >{item.producto}</td>
             <td>${item.price}</td>
+            <td><button onClick={()=> removeItem (item.id)}> eliminar</button></td>
                 </tr>
                 <tr>
                 
@@ -48,6 +59,9 @@ const Cart = () => {
    
 
       </table>
+      <button onClick={()=> clear()}>vaciar carrito</button>
+      </>
+   )}
     </>
   );
 };
