@@ -1,6 +1,7 @@
 import React, {useState,useEffect  } from "react";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
+import {getDoc,doc, getFirestore,collection,getDocs,query,where,limit} from "@firebase/firestore"
 const ItemListContainer = (props) => {
     const ItemsDATABASE=[{
       "id": 1,
@@ -48,26 +49,47 @@ const ItemListContainer = (props) => {
       const {name}=useParams()
      
       let [items,setItems] = useState([]);
-      useEffect(()=>{    let promiseItems = new Promise ((resolve,reject)=>{
+      const [itemsFire, setItemsFire]=useState([])
+      useEffect(()=>{ 
+        //  const db = getFirestore()
+        // const itemsCollection= collection(db,"items");
+        // const filteredCollection = query(itemsCollection, where("producto","==","piano"))
+        // getDocs(filteredCollection).then(snapshot=>{
+        //   const data = snapshot.docs.map (doc=>({
+        //     id:doc.id,
+        //     ...doc.data()
+        //   }));
+        // })
+
+
+
+
+
+        const db = getFirestore()
+        const itemsCollection= collection(db,"items");
+        const itemsDocuments=
+        getDocs(itemsCollection).then ((snapshot)=>{
+          const data = snapshot.docs.map ((doc)=> ({id:doc.id, ...doc.data()})
+          
+          )
+          setItems(data)
+        })
+
+
+
+        // const db = getFirestore()
+        // const docRef = doc(db,"items","4EeyKBsnjJ6MifZpObkY")
+        // getDoc (docRef).then((snapshot))
+        
+        let promiseItems = new Promise ((resolve,reject)=>{
         setTimeout(
             () => {
-        resolve(ItemsDATABASE)  ;
+        resolve(itemsCollection)  ;
         
         },
         1000);
       });
-      promiseItems.then(
-        (respuesta)=>{
-          const products =respuesta;
-          if(name){
-            setItems(ItemsDATABASE.filter((product)=>product.categoria===name));
-          }
-          else{
-            setItems(products)
-          }
-         
-        }
-        ).catch ((errorMg)=>console.error((errorMg)))},
+      },
       [name])
 
     return ( 
