@@ -5,7 +5,18 @@ import { CartContext } from "./contexts/CartContext";
 const Cart = () => {
   
   const [totalPrice, setTotalPrice] = useState(0);
-  const { cartItems, removeItem, clear,setCartItems } = useContext(CartContext);
+  const { cartItems, removeItem, clear,setCartItems, sendOrder } = useContext(CartContext);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const inputs = document.getElementsByTagName("input");
+    console.log(inputs[0]);
+    const data = Array.from(inputs).map((input, index) => input.value);
+    sendOrder(totalPrice, { name: data[0], mail: data[1], phone: data[2] });
+    alert ("ya enviamos la orden de compra");
+    clear()
+    // updateOrder();
+    // multipleUpdates();
+  };
   useEffect(() => {
     let total = 0;
     cartItems.forEach((item) => {
@@ -60,6 +71,21 @@ const Cart = () => {
 
       </table>
       <button onClick={()=> clear()}>vaciar carrito</button>
+      <form onSubmit={handleSubmit}>
+        nombre
+        <input type="text" />
+        email
+        <input type="email" />
+        tel
+        <input type="tel" />
+        <button
+          onClick={() => sendOrder(totalPrice)}
+          type="submit"
+          className="btn btn-info"
+        >
+          enviar pedido
+        </button>
+      </form>
       </>
    )}
     </>
